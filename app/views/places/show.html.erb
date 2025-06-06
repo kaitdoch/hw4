@@ -1,4 +1,5 @@
-<h1><%= @place["name"] %></h1>
+<h1 class="pt-2 mb-4"> <%= @place["name"] %></h1>
+
 
 <p>
 <% if @current_user != nil %>
@@ -7,23 +8,23 @@
 </p>
 
 <p>
-  <a href="/places" class="btn btn-secondary">Back to All Places</a>
+  <a href="/places" class="btn btn-secondary mb-3">Back to All Places</a>
 </p>
 
 
 <% if @current_user != nil %>
-  <div class ="row">
+  <div class ="row g-4">
   <% for entry in @entries %>
     <div class="col-12 col-md-6 col-lg-4">
-      <h3><%= entry["title"] %></h3>
-      <h4><%= entry["occurred_on"] %></h4>
+      <h4><%= entry["title"] %></h4>
+      <h5 class ="mb-3"><%= entry["occurred_on"] %></h5>
             <%# conditionally display attached file if post.uploaded_image.attached? %>
       <% if entry.uploaded_image.attached? %>
         <%# use url_for(post.uploaded_image) as attached file's url %>
-        <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid" style="height: 300px; width: 100%; object-fit: cover;">
+        <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid mb-3" style="height: 300px; width: 100%; object-fit: cover;">
       <% else %>
         <%# otherwise display original image url from database column %>
-        <img src="<%= entry["image"] %>" class="img-fluid">
+        <img src="<%= entry["image"] %>" class="img-fluid mb-3">
       <% end %>
       <p><%= entry["description"] %></p>
     </div>
