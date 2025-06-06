@@ -21,23 +21,41 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <%= flash["notice"] %>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
  
             <% @user = User.find_by({ "id" => session["user_id"] }) %>
             <% if @user == nil %>
-              <a href="/">Home</a>
-              <a href="/users/new" class="nav-link">Sign Up</a></li>
-              <a href="/login" class="nav-link">Login</a></li>
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/users/new" class="nav-link">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a href="/login" class="nav-link">Login</a>
+            </li>
             <% else %>
-              <a href="/">Home</a>
-              <a href="/logout" class="nav-link">Logout</a></li>
-              <br>
-              <br>Logged in as: <%= @user["username"] %></br>
+            <li class="nav-item">
+              <a href="/" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="/logout" class="nav-link">Logout</a>
+            </li>
+            <li class="nav-item">
+              <p>Logged in as: <%= @user["username"] %></p>
+            </li>
             <% end %>
+        </div>
       </div>
     </nav>
+
+    <div>
+      <%= flash["notice"] %>
+    </div>
 
     <div class="container"
       <%= yield %>
